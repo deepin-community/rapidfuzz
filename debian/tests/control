@@ -1,0 +1,7 @@
+Tests: pytest
+Depends: python3-all,
+         python3-hypothesis,
+         python3-numpy,
+         python3-pandas,
+         python3-pytest,
+         python3-rapidfuzz

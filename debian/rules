@@ -1,4 +1,33 @@
-#!/usr/bin/make -f
+#! /usr/bin/make -f
+
+export PYBUILD_NAME=rapidfuzz
+export PYBUILD_TEST_PYTEST=1
+
+SPHINXBUILD=sphinx-build
+SPHINXBUILDDIR=build
 
 %:
-	dh $@
+	dh $@ --buildsystem=pybuild
+
+override_dh_auto_configure:
+	mkdir -p buildlib
+	cd buildlib && cmake ../ \
+	    -D CMAKE_MODULE_PATH=/usr/lib/python3/dist-packages/skbuild/resources/cmake
+
+execute_after_dh_auto_build-indep:
+	: # ensure that this target is non-empty
+ifeq (,$(findstring nodoc,$(DEB_BUILD_OPTIONS)))
+	export PYTHONPATH=$$(pybuild --print build_dir | grep "^$$(py3versions -d)" | sed -e 's/^.*: //'); \
+	    cd docs && $(SPHINXBUILD) -b html -d $(SPHINXBUILDDIR)/doctrees . $(SPHINXBUILDDIR)/html
+endif
+
+override_dh_auto_test-indep:
+	# No need to run tests when only building documentation package
+
+execute_after_dh_auto_clean:
+	rm -rf docs/$(SPHINXBUILDDIR)
+	rm -rf buildlib _skbuild
+
+override_dh_installdocs:
+	dh_installdocs -ppython-$(PYBUILD_NAME)-doc --doc-main-package=python3-$(PYBUILD_NAME)
+	dh_installdocs --remaining-packages

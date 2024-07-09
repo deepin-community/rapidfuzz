@@ -1,0 +1,10 @@
+Document: python-rapidfuzz
+Title: Python RapidFuzz Manual
+Author: Max Bachmann
+Abstract: This manual describes the RapidFuzz package for
+ rapid fuzzy string matching using Levenshtein and other distances
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python3-rapidfuzz/html/index.html
+Files: /usr/share/doc/python3-rapidfuzz/html/*.html
