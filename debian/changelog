@@ -1,5 +1,24 @@
-template-repository (1.0-1) unstable; urgency=medium
+rapidfuzz (3.9.4+ds-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream version
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Julian Gilbey <jdg@debian.org>  Sun, 14 Jul 2024 07:23:32 +0100
+
+rapidfuzz (3.6.2+ds-3) unstable; urgency=medium
+
+  * Fix arch-all build; we need to build the package to build the
+    documentation (closes: #1069624)
+
+ -- Julian Gilbey <jdg@debian.org>  Thu, 25 Apr 2024 21:02:09 +0100
+
+rapidfuzz (3.6.2+ds-2) unstable; urgency=medium
+
+  * Source-only upload
+
+ -- Julian Gilbey <jdg@debian.org>  Thu, 18 Apr 2024 21:43:54 +0100
+
+rapidfuzz (3.6.2+ds-1) unstable; urgency=low
+
+  * Initial release (closes: #1019435)
+
+ -- Julian Gilbey <jdg@debian.org>  Wed, 06 Mar 2024 09:29:57 +0000

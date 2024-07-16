@@ -1,15 +1,64 @@
-Source: template-repository
-Section: unknown
+Source: rapidfuzz
+Section: python
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Julian Gilbey <jdg@debian.org>
+Build-Depends: cython3,
+               debhelper-compat (= 13),
+               dh-sequence-python3,
+               librapidfuzz-cpp-dev (>= 3.0.5),
+               libtaskflow-cpp-dev,
+               pybuild-plugin-pyproject,
+               python3-all-dev,
+               python3-setuptools,
+               python3-skbuild
+Build-Depends-Arch: python3-hypothesis <!nocheck>,
+                    python3-numpy <!nocheck>,
+                    python3-pandas <!nocheck>,
+                    python3-pytest <!nocheck>
+Build-Depends-Indep: dh-sequence-sphinxdoc <!nodoc>,
+                     furo <!nodoc>,
+                     python3-sphinx <!nodoc>,
+                     python3-sphinxcontrib.bibtex <!nodoc>
+Standards-Version: 4.7.0
+Homepage: https://github.com/maxbachmann/RapidFuzz
+Vcs-Browser: https://salsa.debian.org/python-team/packages/rapidfuzz
+Vcs-Git: https://salsa.debian.org/python-team/packages/rapidfuzz.git
+Rules-Requires-Root: no
+Description: Rapid fuzzy string matching library
+ RapidFuzz is a fast string matching library for Python and C++,
+ providing Levenshtein and other distances.  This is similar to the
+ functionality of the python3-fuzzywuzzy package.  There are a few
+ significant differences between these packages:
+ .
+ 1) RapidFuzz is MIT licensed.
+ 2) RapidFuzz provides many string metrics, such as Hamming and Jaro-Winkler,
+    which are not included in FuzzyWuzzy.
+ 3) RapidFuzz is mostly written in C++, and has further algorithmic
+    improvements to make string matching even faster.
+ 4) RapidFuzz fixes multiple bugs in the `partial_ratio` implementation.
 
-Package: template-repository
+Package: python3-rapidfuzz
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Multi-Arch: foreign
+Depends: ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Recommends: ${python3:Recommends}
+Suggests: python-rapidfuzz-doc,
+          ${python3:Suggests}
+Description: ${source:Synopsis} (Python library)
+ ${source:Extended-Description}
+
+Package: python-rapidfuzz-doc
+Section: doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends},
+         ${sphinxdoc:Depends}
+Recommends: python3-rapidfuzz
+Description: ${source:Synopsis} (Python module documentation)
+ ${source:Extended-Description}
+ .
+ This package contains the RapidFuzz Python module documentation in
+ HTML format.
+Build-Profiles: <!nodoc>

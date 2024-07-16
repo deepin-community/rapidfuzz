@@ -1,0 +1,7 @@
+version=4
+
+opts="filenamemangle=s%(?:.*?)?v?(@ANY_VERSION@@ARCHIVE_EXT@)%RapidFuzz-$1%, \
+      dversionmangle=s/\+ds//, \
+      repack, repacksuffix=+ds" \
+    https://github.com/maxbachmann/RapidFuzz/tags \
+    (?:.*?/)v?@ANY_VERSION@@ARCHIVE_EXT@
