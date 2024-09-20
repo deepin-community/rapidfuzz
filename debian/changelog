@@ -1,3 +1,9 @@
+rapidfuzz (3.9.4+ds-1deepin0) unstable; urgency=medium
+
+  * No source change upload against GCC 12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Fri, 20 Sep 2024 12:17:37 +0800
+
 rapidfuzz (3.9.4+ds-1) unstable; urgency=medium
 
   * New upstream version
